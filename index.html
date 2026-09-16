@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+  <title>Kotoba (言葉) - Apprendre le Japonais</title>
+  
+  <!-- PWA & Mobile Web App Meta Tags -->
+  <meta name="theme-color" content="#e85d75">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Kotoba">
+  <meta name="description" content="Application simple et fluide pour apprendre le japonais en famille sur iPhone et Mac.">
+  
+  <link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
+  <link rel="apple-touch-icon" href="icons/icon.svg">
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Clean Japanese typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div id="app-container">
+    <!-- Top Fixed Header -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-icon">言</div>
+        <div>
+          <h1 class="brand-title">Kotoba <span style="font-weight:400; font-family:var(--font-jp);">言葉</span></h1>
+          <div class="brand-sub" id="brand-sub">Japonais Pas à Pas</div>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button class="profile-pill" id="header-profile-pill" aria-label="Changer de profil">
+          <span id="header-profile-avatar">🌸</span>
+          <span id="header-profile-name">Moi</span>
+          <span style="font-size:0.7rem; opacity:0.6;">▼</span>
+        </button>
+
+        <button class="icon-btn" id="btn-settings" aria-label="Paramètres">
+          ⚙️
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Dynamic Content Area -->
+    <main class="app-content" id="content-area">
+      <!-- Injected by js/app.js -->
+    </main>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav" id="bottom-nav">
+      <button class="nav-item active" data-tab="kana" aria-label="Kana">
+        <span class="nav-icon">あ</span>
+        <span class="nav-label" id="nav-label-kana">Kana</span>
+      </button>
+      <button class="nav-item" data-tab="vocab" aria-label="Vocabulaire">
+        <span class="nav-icon">📖</span>
+        <span class="nav-label" id="nav-label-vocab">Vocabulaire</span>
+      </button>
+      <button class="nav-item" data-tab="kanji" aria-label="Kanji">
+        <span class="nav-icon">漢</span>
+        <span class="nav-label" id="nav-label-kanji">Kanji</span>
+      </button>
+      <button class="nav-item" data-tab="practice" aria-label="Pratique">
+        <span class="nav-icon">🎯</span>
+        <span class="nav-label" id="nav-label-practice">Pratique</span>
+      </button>
+      <button class="nav-item" data-tab="family" aria-label="Famille">
+        <span class="nav-icon">👨‍👩‍👧</span>
+        <span class="nav-label" id="nav-label-family">Famille</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Modal: Profile Switcher & Add Learner -->
+  <div class="modal-overlay" id="modal-profile">
+    <div class="modal-sheet">
+      <div class="modal-header">
+        <h3 class="modal-title">Apprenants de la famille</h3>
+        <button class="modal-close" aria-label="Fermer">✕</button>
+      </div>
+
+      <div id="modal-profile-list">
+        <!-- Rendered by js/app.js -->
+      </div>
+
+      <div style="margin-top: 18px; border-top: 1px solid var(--border-color); padding-top: 16px;">
+        <h4 style="font-size:0.9rem; margin-bottom: 8px;">Ajouter un membre</h4>
+        <div style="display:flex; gap: 8px;">
+          <input type="text" id="new-profile-name" placeholder="Prénom (ex: Nils, Elle, Papa...)" 
+            style="flex:1; padding: 10px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-main); font-size: 0.95rem;">
+          <button class="btn-primary" id="btn-add-profile" style="width: auto; padding: 10px 18px;">
+            Ajouter
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Settings & Backup -->
+  <div class="modal-overlay" id="modal-settings">
+    <div class="modal-sheet">
+      <div class="modal-header">
+        <h3 class="modal-title">Paramètres & Sauvegarde</h3>
+        <button class="modal-close" aria-label="Fermer">✕</button>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap: 16px;">
+        <div>
+          <label style="font-size:0.85rem; font-weight:600; color:var(--text-muted); display:block; margin-bottom:6px;">
+            Langue des traductions
+          </label>
+          <select id="setting-language" style="width:100%; padding:10px 14px; border-radius:var(--radius-sm); border:1px solid var(--border-color); background:var(--bg-card); color:var(--text-main); font-size:0.95rem;">
+            <option value="fr">🇫🇷 Français</option>
+            <option value="en">🇬🇧 English</option>
+          </select>
+        </div>
+
+        <div>
+          <label style="font-size:0.85rem; font-weight:600; color:var(--text-muted); display:block; margin-bottom:6px;">
+            Vitesse de prononciation audio
+          </label>
+          <select id="setting-audio-speed" style="width:100%; padding:10px 14px; border-radius:var(--radius-sm); border:1px solid var(--border-color); background:var(--bg-card); color:var(--text-main); font-size:0.95rem;">
+            <option value="normal">Normale</option>
+            <option value="slow">Lente (idéal pour débuter)</option>
+          </select>
+        </div>
+
+        <div style="border-top:1px solid var(--border-color); padding-top:16px;">
+          <h4 style="font-size:0.9rem; margin-bottom:10px;">Partage & Sauvegarde</h4>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <button class="btn-secondary" id="btn-export-data">
+              💾 Exporter les progrès en JSON
+            </button>
+            <label class="btn-secondary" style="cursor:pointer; text-align:center;">
+              📥 Importer un fichier de sauvegarde
+              <input type="file" id="file-import-data" accept=".json" style="display:none;">
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Installation on iPhone & Mac -->
+  <div class="modal-overlay" id="modal-install">
+    <div class="modal-sheet">
+      <div class="modal-header">
+        <h3 class="modal-title">Installer sur iPhone ou Mac</h3>
+        <button class="modal-close" aria-label="Fermer">✕</button>
+      </div>
+      <div style="font-size: 0.9rem; line-height: 1.6; color: var(--text-main);">
+        <h4 style="margin-bottom: 6px; color: var(--accent-sakura);">📱 Sur iPhone & iPad :</h4>
+        <ol style="padding-left: 20px; margin-bottom: 16px;">
+          <li>Ouvrez le lien dans <strong>Safari</strong>.</li>
+          <li>Appuyez sur le bouton <strong>Partager</strong> <span style="font-size:1.1rem;">⎋</span> (en bas au milieu).</li>
+          <li>Faites défiler et touchez <strong>"Sur l'écran d'accueil"</strong> (Add to Home Screen).</li>
+          <li>L'icône Kotoba apparaît sur votre écran comme une vraie application autonome sans barre de navigation !</li>
+        </ol>
+
+        <h4 style="margin-bottom: 6px; color: var(--accent-indigo);">💻 Sur Mac :</h4>
+        <ol style="padding-left: 20px;">
+          <li>Dans Safari : Menu <strong>Fichier</strong> → <strong>Ajouter au Dock...</strong></li>
+          <li>Dans Chrome : Cliquez sur l'icône d'installation dans la barre d'adresse.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Application Script (ES Module) -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
