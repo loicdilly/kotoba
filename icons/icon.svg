@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff5f6"/>
+      <stop offset="100%" stop-color="#fedce2"/>
+    </linearGradient>
+    <linearGradient id="sun" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff6b81"/>
+      <stop offset="100%" stop-color="#e8435d"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#e8435d" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Background rounded rect -->
+  <rect width="512" height="512" rx="128" fill="url(#bg)"/>
+
+  <!-- Red Sun (Hinomaru accent) -->
+  <circle cx="256" cy="236" r="140" fill="url(#sun)" filter="url(#shadow)"/>
+
+  <!-- Japanese Torii Gate silhouette / Kanji '言' in white -->
+  <g fill="#ffffff" transform="translate(146, 126) scale(0.43)">
+    <!-- Traditional Torii Gate Vector -->
+    <path d="M40 90 C 180 60, 360 60, 500 90 L 490 130 C 360 105, 180 105, 50 130 Z" />
+    <path d="M70 160 L 470 160 L 470 195 L 70 195 Z" />
+    <path d="M120 195 L 120 520 L 170 520 L 170 195 Z" />
+    <path d="M370 195 L 370 520 L 420 520 L 420 195 Z" />
+    <path d="M250 95 L 290 95 L 290 160 L 250 160 Z" />
+  </g>
+
+  <!-- Sakura blossom branch accent -->
+  <circle cx="160" cy="380" r="18" fill="#e85d75" opacity="0.8"/>
+  <circle cx="178" cy="365" r="18" fill="#e85d75" opacity="0.8"/>
+  <circle cx="192" cy="382" r="18" fill="#e85d75" opacity="0.8"/>
+  <circle cx="182" cy="402" r="18" fill="#e85d75" opacity="0.8"/>
+  <circle cx="162" cy="398" r="18" fill="#e85d75" opacity="0.8"/>
+  <circle cx="175" cy="385" r="7" fill="#ffd166"/>
+
+  <!-- App Name in Japanese '言葉' underneath -->
+  <text x="256" y="445" font-family="-apple-system, sans-serif" font-size="42" font-weight="800" fill="#2c4251" text-anchor="middle" letter-spacing="4">言葉 KOTOBA</text>
+</svg>
